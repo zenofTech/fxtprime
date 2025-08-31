@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./static/img/logo.jpeg">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <style>
+    
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fxt-gradient {
+            background-image: linear-gradient(to right, #4c51bf, #667eea);
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo area -->
+            <a href="./index.html" class="flex items-center">
+                <img src="./static/img/fxt_logo.jpeg" alt="FXT Prime Hub Logo" class="h-12 md:h-14 w-auto rounded-lg">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 font-medium transition-colors duration-300">Platform</a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 font-medium transition-colors duration-300">Solutions</a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 font-medium transition-colors duration-300">Pricing</a>
+                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 font-medium transition-colors duration-300">About Us</a>
+                <a href="./signup.html" class="px-6 py-2 rounded-full fxt-gradient text-white font-semibold shadow-lg transition-transform transform hover:scale-105">Sign Up</a>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-blue-500 transition-colors duration-300">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center md:hidden space-x-4">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-blue-500 transition-colors duration-300">
+                    <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-gray-100 dark:bg-gray-800 z-50 shadow-lg p-6 flex flex-col items-center space-y-6 md:hidden">
+            <button id="mobile-menu-close" class="self-end text-gray-500 dark:text-gray-400 focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <a href="#" class="text-gray-600 dark:text-gray-400 text-lg font-medium hover:text-blue-500 transition-colors duration-300">Platform</a>
+            <a href="#" class="text-gray-600 dark:text-gray-400 text-lg font-medium hover:text-blue-500 transition-colors duration-300">Solutions</a>
+            <a href="#" class="text-gray-600 dark:text-gray-400 text-lg font-medium hover:text-blue-500 transition-colors duration-300">Pricing</a>
+            <a href="#" class="text-gray-600 dark:text-gray-400 text-lg font-medium hover:text-blue-500 transition-colors duration-300">About Us</a>
+            <a href="./signup.html" class="w-full text-center px-6 py-3 rounded-full fxt-gradient text-white font-semibold shadow-lg">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md">
+            <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-6">Log in to Your Account</h2>
+
+            <form id="login-form" class="space-y-6">
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <div class="flex justify-between items-center">
+                        <label for="password" class="block text-sm font-medium text-gray-500 dark:text-gray-400">Password</label>
+                        <a href="./resetPasswrod.html" class="text-xs font-medium text-blue-500 hover:text-blue-400">Forgot password?</a>
+                    </div>
+                    <input type="password" id="password" name="password" required
+                           class="mt-1 block w-full px-4 py-2 bg-gray-200 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" id="login-btn"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg shadow-lg transform transition-transform duration-200 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800">
+                    Log In
+                </button>
+            </form>
+
+            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+                Don't have an account? <a href="./signup.html" class="font-medium text-blue-500 hover:text-blue-400">Sign Up</a>
+            </p>
+        </div>
+    </main>
+
+    <!-- Custom Modal UI for messages (instead of alert) -->
+    <div id="modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white text-gray-800">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title"></h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500" id="modal-message"></p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="close-modal-btn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-lg w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-50 dark:bg-gray-900 py-8 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo area -->
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="./index.html" class="flex items-center">
+                        <img src="./static/img/fxt_logo.jpeg" alt="FXT Prime Hub Logo" class="h-12 md:h-14 w-auto rounded-lg">
+                    </a>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-4">&copy; 2024 FXT Prime Hub. All rights reserved.</p>
+                </div>
+                <!-- Links Column 1 -->
+                <div>
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-3">Company</h5>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Press</a></li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Partnerships</a></li>
+                    </ul>
+                </div>
+                <!-- Links Column 2 -->
+                <div>
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-3">Resources</h5>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Trading Analytics</a>
+                        </li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Market Insights</a>
+                        </li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">API Documentation</a>
+                        </li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Support</a></li>
+                    </ul>
+                </div>
+                <!-- Legal Links -->
+                <div>
+                    <h5 class="font-semibold text-gray-900 dark:text-white mb-3">Legal</h5>
+                    <ul class="space-y-2 text-gray-500 dark:text-gray-400">
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Terms of Service</a>
+                        </li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Privacy Policy</a>
+                        </li>
+                        <li><a href="#" class="hover:text-blue-500 transition-colors duration-300">Risk Disclosure</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social Media Icons -->
+            <div class="flex justify-center md:justify-end space-x-6 mt-8">
+                <a href="#" aria-label="Facebook" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="#" aria-label="Twitter" class="text-gray-500 dark:text-gray-400 hover:text-sky-500 transition-colors duration-300">
+                    <i class="fab fa-x-twitter text-2xl"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="text-gray-500 dark:text-gray-400 hover:text-pink-500 transition-colors duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="text-gray-500 dark:text-gray-400 hover:text-blue-700 transition-colors duration-300">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // Global variable provided by the Canvas environment.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+
+        // --- Firebase Initialization ---
+        let app, auth;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            console.log("Firebase initialized successfully.");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            showModal('Initialization Error', 'Failed to initialize Firebase. Check console for details.');
+        }
+
+        // --- UI Elements ---
+        const form = document.getElementById('login-form');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('login-btn');
+        const htmlElement = document.documentElement;
+
+        // Modal UI elements
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+        // --- Modal Functions ---
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        // --- Theme Logic ---
+        function setTheme(theme) {
+            htmlElement.classList.remove('light', 'dark');
+            htmlElement.classList.add(theme);
+            localStorage.setItem('theme', theme);
+            updateThemeIcons(theme);
+        }
+
+        function updateThemeIcons(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeIconMobile.classList.remove('fa-moon');
+                themeIconMobile.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeIconMobile.classList.remove('fa-sun');
+                themeIconMobile.classList.add('fa-moon');
+            }
+        }
+
+        // --- Combined DOMContentLoaded and Theme Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set the initial theme based on localStorage or system preference
+            const storedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+            setTheme(initialTheme);
+        
+            // Toggle theme on button click
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+                });
+            }
+        
+            // Toggle theme on mobile button click
+            if (themeToggleBtnMobile) {
+                themeToggleBtnMobile.addEventListener('click', () => {
+                    const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+                    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+                });
+            }
+        
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+        
+            mobileMenuCloseBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+
+            // --- Form Submission Logic ---
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+
+                loginBtn.textContent = 'Logging in...';
+                loginBtn.disabled = true;
+
+                if (!email || !password) {
+                    showModal('Validation Error', 'Please enter both email and password.');
+                    loginBtn.textContent = 'Log In';
+                    loginBtn.disabled = false;
+                    return;
+                }
+
+                try {
+                    if (!auth) {
+                        console.error("Auth is not initialized.");
+                        showModal('Error', 'Authentication service is not ready. Please try again.');
+                        return;
+                    }
+                    
+                    await signInWithEmailAndPassword(auth, email, password);
+                    showModal('Login Successful!', 'You have been successfully logged in.');
+                    form.reset();
+                } catch (error) {
+                    console.error("Login failed:", error);
+                    let errorMessage = 'An error occurred during login. Please try again.';
+                    
+                    switch (error.code) {
+                        case 'auth/invalid-credential':
+                            errorMessage = 'Invalid email or password. Please try again.';
+                            break;
+                        case 'auth/user-disabled':
+                            errorMessage = 'This account has been disabled.';
+                            break;
+                        case 'auth/too-many-requests':
+                            errorMessage = 'Access to this account has been temporarily disabled due to many failed login attempts. Please try again later.';
+                            break;
+                        default:
+                            errorMessage = 'An unexpected error occurred. Please try again.';
+                            break;
+                    }
+                    showModal('Login Failed', errorMessage);
+                } finally {
+                    loginBtn.textContent = 'Log In';
+                    loginBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
+        <div class="flex flex-col items-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Forgot Password?</h1>
+            <p class="text-gray-600 text-center mb-6">Enter your email address and we'll send you a link to reset your password.</p>
+        </div>
+
+        <form id="forgot-password-form" class="space-y-4">
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com" class="mt-1 block w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+            
+            <button type="submit" id="reset-password-btn" class="w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition-colors disabled:bg-gray-400">
+                Send Reset Link
+            </button>
+        </form>
+
+        <p class="mt-6 text-center text-sm">
+            <a href="./login.html" class="font-medium text-blue-600 hover:text-blue-500">Back to Login</a>
+        </p>
+
+        <!-- Custom Modal UI for messages -->
+        <div id="modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+            <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+                <div class="mt-3 text-center">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title"></h3>
+                    <div class="mt-2 px-7 py-3">
+                        <p class="text-sm text-gray-500" id="modal-message"></p>
+                    </div>
+                    <div class="items-center px-4 py-3">
+                        <button id="close-modal-btn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-lg w-full shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        
+        // Global variables provided by the Canvas environment.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+
+        // --- Firebase Initialization ---
+        let app, auth;
+        try {
+            app = initializeApp(firebaseConfig);
+            auth = getAuth(app);
+            console.log("Firebase initialized successfully.");
+        } catch (error) {
+            console.error("Error initializing Firebase:", error);
+            showModal('Initialization Error', 'Failed to initialize Firebase. Check console for details.');
+        }
+
+        // --- UI Elements ---
+        const form = document.getElementById('forgot-password-form');
+        const emailInput = document.getElementById('email');
+        const resetButton = document.getElementById('reset-password-btn');
+
+        // Modal UI elements
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        // --- Event Listeners and Logic ---
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            resetButton.disabled = true;
+            resetButton.textContent = 'Sending...';
+
+            try {
+                if (!auth) {
+                    console.error("Auth is not initialized.");
+                    showModal('Error', 'Authentication service is not ready. Please try again.');
+                    return;
+                }
+                
+                await sendPasswordResetEmail(auth, email);
+                showModal('Success!', 'If an account exists for this email, a password reset link has been sent.');
+            } catch (error) {
+                console.error("Error sending password reset email:", error);
+                let errorMessage = 'An error occurred. Please try again.';
+                // Provide more specific error messages for the user
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        errorMessage = 'The email address is not valid.';
+                        break;
+                    case 'auth/user-not-found':
+                        errorMessage = 'No user found with this email. Please check the address.';
+                        break;
+                    default:
+                        // Use a generic message for other errors to avoid revealing system info
+                        errorMessage = 'Failed to send reset email. Please try again.';
+                        break;
+                }
+                showModal('Error', errorMessage);
+            } finally {
+                resetButton.disabled = false;
+                resetButton.textContent = 'Send Reset Link';
+            }
+        });
+
+        // --- Modal Functions ---
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.classList.remove('hidden');
+        }
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+    </script>
+</body>
+</html>
