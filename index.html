@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FXT Prime Hub</title>
      <!-- SEO Meta Tags -->
-    <meta name="description" content="FXT Prime Hub your trading platform, market analytics, and portfolio dashboard. Secure and fast access for all users.">
+    <meta name="description" content="FXT Prime Hub offers cutting-edge tools, real-time market analytics, and a secure platform for traders to unlock their full potential.">
     <meta name="keywords" content="FXT Prime Hub, Investment, Forex, Crypto, trading platform , secure login, financial trading, market analytics">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph Meta Tags for Social Sharing -->
     <meta property="og:title" content="FXT Prime Hub - Your Gateway to Financial Markets">
-    <meta property="og:description" content="Log in to your FXT Prime Hub account to access your trading platform, market analytics, and portfolio dashboard.">
+    <meta name="og:description" content="FXT Prime Hub offers cutting-edge tools, real-time market analytics, and a secure platform for traders to unlock their full potential.">
     <meta property="og:url" content="https://fxtprime.com/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="./static/img/fxt_logo.jpeg">
@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="./static/img/logo.jpeg">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-   <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/index.css">
 </head>
 
 <body class="bg-primary text-primary transition-colors duration-300">
@@ -106,7 +106,30 @@
                 </div>
             </div>
         </section>
-
+ <!-- Live Market Feeds Section -->
+        <section id="live-feeds" class="py-12 md:py-24 bg-secondary transition-colors duration-300">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-12">Live Market Charts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- BTCUSD Live Feed Chart -->
+                    <div class="card-bg p-4 rounded-3xl shadow-xl border-color border transition-colors duration-300 h-80">
+                        <div id="tradingview_btcusd" class="w-full h-full rounded-2xl"></div>
+                    </div>
+                    <!-- ETHUSD Live Feed Chart -->
+                    <div class="card-bg p-4 rounded-3xl shadow-xl border-color border transition-colors duration-300 h-80">
+                        <div id="tradingview_ethusd" class="w-full h-full rounded-2xl"></div>
+                    </div>
+                    <!-- EURUSD Live Feed Chart -->
+                    <div class="card-bg p-4 rounded-3xl shadow-xl border-color border transition-colors duration-300 h-80">
+                        <div id="tradingview_eurusd" class="w-full h-full rounded-2xl"></div>
+                    </div>
+                    <!-- XAUUSD Live Feed Chart -->
+                    <div class="card-bg p-4 rounded-3xl shadow-xl border-color border transition-colors duration-300 h-80">
+                        <div id="tradingview_xauusd" class="w-full h-full rounded-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- About Us Section -->
         <section id="about" class="py-12 md:py-24 bg-secondary transition-colors duration-300">
             <div class="container mx-auto px-4">
@@ -401,6 +424,10 @@
         </div>
     </footer>
 
+   
+    <!-- TradingView Widget Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const htmlElement = document.documentElement;
@@ -415,8 +442,9 @@
             // Function to set the theme
             function setTheme(theme) {
                 htmlElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
+                sessionStorage.setItem('theme', theme);
                 updateThemeIcons(theme);
+                loadCharts(theme); // Load charts with the new theme
             }
 
             // Function to update the icons based on the current theme
@@ -434,18 +462,54 @@
                 }
             }
 
+            // Function to load the TradingView charts
+            function loadCharts(theme) {
+                // Clear existing charts to prevent duplication
+                document.getElementById('tradingview_btcusd').innerHTML = '';
+                document.getElementById('tradingview_ethusd').innerHTML = '';
+                document.getElementById('tradingview_eurusd').innerHTML = '';
+                document.getElementById('tradingview_xauusd').innerHTML = '';
+                
+                const charts = [{
+                    symbol: "BITSTAMP:BTCUSD",
+                    container_id: "tradingview_btcusd"
+                }, {
+                    symbol: "BITSTAMP:ETHUSD",
+                    container_id: "tradingview_ethusd"
+                }, {
+                    symbol: "FX:EURUSD",
+                    container_id: "tradingview_eurusd"
+                }, {
+                    symbol: "OANDA:XAUUSD",
+                    container_id: "tradingview_xauusd"
+                }];
+
+                charts.forEach(chart => {
+                    new TradingView.widget({
+                        "autosize": true,
+                        "symbol": chart.symbol,
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": theme,
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false,
+                        "allow_symbol_change": true,
+                        "container_id": chart.container_id
+                    });
+                });
+            }
+
             // Check for saved theme preference or system preference
-            const savedTheme = localStorage.getItem('theme');
+            const savedTheme = sessionStorage.getItem('theme');
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
             if (savedTheme) {
-                // If a theme is saved, use it
                 setTheme(savedTheme);
             } else if (prefersDark) {
-                // Otherwise, use the system preference
                 setTheme('dark');
             } else {
-                // Default to light
                 setTheme('light');
             }
 
