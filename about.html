@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About FXT Prime Hub</title>
+     <!-- SEO Meta Tags -->
+    <meta name="description" content="FXT Prime Hub offers cutting-edge tools, real-time market analytics, and a secure platform for traders to unlock their full potential.">
+    <meta name="keywords" content="FXT Prime Hub, Investment, Forex, Crypto, trading platform , secure login, financial trading, market analytics">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="FXT Prime Hub - Your Gateway to Financial Markets">
+    <meta name="og:description" content="FXT Prime Hub offers cutting-edge tools, real-time market analytics, and a secure platform for traders to unlock their full potential.">
+    <meta property="og:url" content="https://fxtprime.com/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./static/img/fxt_logo.jpeg">
+    <meta property="og:site_name" content="FXT Prime Hub">
+    <!-- Inter font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./static/img/logo.jpeg">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .hero {
+            background-image: url(./static/img/banner.png);
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .card {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+  <header class="bg-primary shadow-md sticky top-0 z-50 transition-colors duration-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo area -->
+            <a href="./index.html" class="flex items-center">
+               <img src="./static/img/fxt_logo.jpeg" alt="FXT Prime Hub Logo" class="h-12 md:h-14 w-auto rounded-lg">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-secondary hover:text-primary font-medium transition-colors duration-300">Platform</a>
+                <a href="#" class="text-secondary hover:text-primary font-medium transition-colors duration-300">Solutions</a>
+                <a href="#" class="text-secondary hover:text-primary font-medium transition-colors duration-300">Pricing</a>
+                <a href="./about.html" class="text-secondary hover:text-primary font-medium transition-colors duration-300">About Us</a>
+                <a href="./signup.html" class="px-6 py-2 rounded-full fxt-gradient text-white font-semibold shadow-lg transition-transform transform hover:scale-105">Sign Up</a>
+
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="p-2 rounded-full bg-secondary text-primary transition-colors duration-300">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center md:hidden space-x-4">
+                <button id="theme-toggle-mobile" class="p-2 rounded-full bg-secondary text-primary transition-colors duration-300">
+                    <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-button" class="text-primary focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-64 h-full bg-secondary z-50 shadow-lg p-6 flex flex-col items-center space-y-6 md:hidden">
+            <button id="mobile-menu-close" class="self-end text-primary focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <a href="#" class="text-primary text-lg font-medium hover:text-blue-500 transition-colors duration-300">Platform</a>
+            <a href="#" class="text-primary text-lg font-medium hover:text-blue-500 transition-colors duration-300">Solutions</a>
+            <a href="#" class="text-primary text-lg font-medium hover:text-blue-500 transition-colors duration-300">Pricing</a>
+            <a href="./about.html" class="text-primary text-lg font-medium hover:text-blue-500 transition-colors duration-300">About Us</a>
+            <a href="./signup.html" class="w-full text-center px-6 py-3 rounded-full fxt-gradient text-white font-semibold shadow-lg">Sign Up</a>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <header class="hero rounded-b-3xl">
+        <div class="text-center p-4 bg-black bg-opacity-40 rounded-lg">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4">About FXT Prime Hub</h1>
+            <p class="text-lg sm:text-xl md:text-2xl font-medium">Your trusted partner in financial markets.</p>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto p-6 md:p-12">
+
+        <!-- Company Mission -->
+        <section class="my-16 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-gray-800">Our Mission</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                At FXT Prime Hub, our mission is to provide transparent, reliable, and secure trading platforms for our clients. We are dedicated to empowering traders of all levels with cutting-edge technology, educational resources, and unparalleled support to help them achieve their financial goals.
+            </p>
+        </section>
+
+        <!-- Our Story -->
+        <section class="grid md:grid-cols-2 gap-12 items-center my-16">
+            <div>
+                <img src="./static/img/fxt_logo.png" alt="Our Story" class="rounded-2xl shadow-lg w-full">
+            </div>
+            <div class="space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800">Our Story</h2>
+                <p class="text-gray-600">
+                    Founded in 2024 by a team of financial market veterans, FXT Prime Hub was created to address the need for a more client-centric trading experience. We started with a vision to build a platform that combines powerful technology with genuine customer care.
+                </p>
+                <p class="text-gray-600">
+                    Our journey has been a testament to our commitment to innovation and security. We've grown into a global brand, serving clients in over 5 states in Nigeria, but our core values of trust and partnership remain the foundation of our success.
+                </p>
+            </div>
+        </section>
+
+        <!-- Our Values Section -->
+        <section class="my-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">Our Core Values</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Value 1 -->
+                <div class="card p-8 rounded-2xl text-center space-y-4">
+                    <div class="text-4xl text-blue-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Security</h3>
+                    <p class="text-gray-600">We prioritize the safety of your funds and data with advanced security protocols.</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="card p-8 rounded-2xl text-center space-y-4">
+                    <div class="text-4xl text-green-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 111.955 0 0112 2.944c-.217 0-.435.01-.653.03a11.955 111.955 0 00-8.991 16.484 12 12 0 0017.324-4.821c.21-.493.407-1.002.593-1.52A12.023 12.023 0 0022 12c0-1.745-.308-3.418-.87-5.004z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Integrity</h3>
+                    <p class="text-gray-600">We operate with honesty, transparency, and fairness in all our services.</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="card p-8 rounded-2xl text-center space-y-4">
+                    <div class="text-4xl text-purple-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M12 20.005L8.172 16.172a4 4 0 010-5.656L12 6.884l3.828 3.828a4 4 0 010 5.656L12 20.005z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Innovation</h3>
+                    <p class="text-gray-600">We continuously enhance our platform with new tools and features to serve you better.</p>
+                </div>
+                <!-- Value 4 -->
+                <div class="card p-8 rounded-2xl text-center space-y-4">
+                    <div class="text-4xl text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800">Support</h3>
+                    <p class="text-gray-600">Our team is always ready to assist you on your trading journey.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="my-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-800">Meet Our Team</h2>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="card p-6 rounded-2xl text-center">
+                    <img src="https://placehold.co/150x150/555555/FFFFFF?text=Muktar+Aliyu" alt="Muktar Aliyu" class="rounded-full mx-auto mb-4 w-32 h-32 object-cover">
+                    <h4 class="text-xl font-semibold text-gray-800">Muktar Aliyu</h4>
+                    <p class="text-sm text-gray-500">CEO & Founder</p>
+                    <p class="mt-4 text-gray-600 text-sm">Muktar brings over six years of experience in the financial markets, driving our vision forward.</p>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="card p-6 rounded-2xl text-center">
+                    <img src="https://placehold.co/150x150/777777/FFFFFF?text=Adeniyi+Suleman" alt="Adeniyi Suleman" class="rounded-full mx-auto mb-4 w-32 h-32 object-cover">
+                    <h4 class="text-xl font-semibold text-gray-800">Adeniyi Suleman</h4>
+                    <p class="text-sm text-gray-500">App Developer/Investor</p>
+                    <p class="mt-4 text-gray-600 text-sm">Adeniyi is responsible for our robust and secure technology infrastructure.</p>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="card p-6 rounded-2xl text-center">
+                    <img src="https://placehold.co/150x150/999999/FFFFFF?text=Mr.+Njoku" alt="Mr. Njoku" class="rounded-full mx-auto mb-4 w-32 h-32 object-cover">
+                    <h4 class="text-xl font-semibold text-gray-800">Mr. Njoku</h4>
+                    <p class="text-sm text-gray-500">Investor/ Head of Clients</p>
+                    <p class="mt-4 text-gray-600 text-sm">Mr. Njoku ensures every client receives the best possible service and support.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+     <!-- Footer -->
+    <footer class="bg-primary py-8 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Logo area -->
+                <div class="flex flex-col items-center md:items-start">
+                    <a href="#" class="flex items-center">
+                        <img src="./static/img/fxt_logo.jpeg" alt="FXT Prime Hub Logo" class="h-12 md:h-14 w-auto">
+                    </a>
+                    <p class="text-sm text-secondary mt-4">&copy; 2024 FXT Prime Hub. All rights reserved.</p>
+                </div>
+                <!-- Links Column 1 -->
+                <div>
+                    <h5 class="font-semibold text-primary mb-3">Company</h5>
+                    <ul class="space-y-2 text-secondary">
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Press</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Partnerships</a></li>
+                    </ul>
+                </div>
+                <!-- Links Column 2 -->
+                <div>
+                    <h5 class="font-semibold text-primary mb-3">Resources</h5>
+                    <ul class="space-y-2 text-secondary">
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Trading Analytics</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Market Insights</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">API Documentation</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Support</a></li>
+                    </ul>
+                </div>
+                <!-- Legal Links -->
+                <div>
+                    <h5 class="font-semibold text-primary mb-3">Legal</h5>
+                    <ul class="space-y-2 text-secondary">
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Terms of Service</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Privacy Policy</a>
+                        </li>
+                        <li><a href="#" class="hover:text-primary transition-colors duration-300">Risk Disclosure</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Social Media Icons -->
+            <div class="flex justify-center md:justify-end space-x-6 mt-8">
+                <a href="#" aria-label="Facebook" class="text-secondary hover:text-blue-600 transition-colors duration-300">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                <a href="#" aria-label="Twitter" class="text-secondary hover:text-sky-500 transition-colors duration-300">
+                    <i class="fab fa-x-twitter text-2xl"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="text-secondary hover:text-pink-500 transition-colors duration-300">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                <a href="#" aria-label="LinkedIn" class="text-secondary hover:text-blue-700 transition-colors duration-300">
+                    <i class="fab fa-linkedin-in text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const htmlElement = document.documentElement;
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+            const mobileMenuBtn = document.getElementById('mobile-menu-button');
+            const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeIconMobile = document.getElementById('theme-icon-mobile');
+
+            // Function to set the theme
+            function setTheme(theme) {
+                htmlElement.setAttribute('data-theme', theme);
+                updateThemeIcons(theme);
+            }
+
+            // Function to update the icons based on the current theme
+            function updateThemeIcons(theme) {
+                if (theme === 'dark') {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    themeIconMobile.classList.remove('fa-moon');
+                    themeIconMobile.classList.add('fa-sun');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    themeIconMobile.classList.remove('fa-sun');
+                    themeIconMobile.classList.add('fa-moon');
+                }
+            }
+
+            // Check for system preference
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(prefersDark ? 'dark' : 'light');
+
+            // Toggle theme on button click (desktop)
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = htmlElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    setTheme(newTheme);
+                });
+            }
+
+            // Toggle theme on button click (mobile)
+            if (themeToggleBtnMobile) {
+                themeToggleBtnMobile.addEventListener('click', () => {
+                    const currentTheme = htmlElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    setTheme(newTheme);
+                });
+            }
+
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('open');
+            });
+
+            mobileMenuCloseBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+
+            // Form validation logic
+            const form = document.getElementById('signup-form');
+            const firstNameInput = document.getElementById('first-name');
+            const lastNameInput = document.getElementById('last-name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const messageContainer = document.getElementById('message-container');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+
+            const showMessage = (element, message) => {
+                errorMessage.classList.add('hidden');
+                successMessage.classList.add('hidden');
+                messageContainer.classList.remove('hidden');
+                element.textContent = message;
+                element.classList.remove('hidden');
+            };
+
+            const validateForm = () => {
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+
+                if (!firstName || !lastName || !email || !password || !confirmPassword) {
+                    showMessage(errorMessage, 'Please fill out all fields.');
+                    return false;
+                }
+
+                if (password !== confirmPassword) {
+                    showMessage(errorMessage, 'Passwords do not match.');
+                    return false;
+                }
+
+                return true;
+            };
+
+            const clearForm = () => {
+                form.reset();
+            };
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                if (validateForm()) {
+                    showMessage(successMessage, 'Sign up successful!');
+                    console.log('User signed up:', {
+                        firstName: firstNameInput.value,
+                        lastName: lastNameInput.value,
+                        email: emailInput.value
+                    });
+
+                    clearForm();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
