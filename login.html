@@ -193,7 +193,8 @@
                 <a href="#" aria-label="Facebook" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 transition-colors duration-300">
                     <i class="fab fa-facebook-f text-2xl"></i>
                 </a>
-                <a href="#" aria-label="Twitter" class="text-gray-500 dark:text-gray-400 hover:text-sky-500 transition-colors duration-300">
+                
+                <a href="#" aria-label="Twitter" class="text-secondary hover:text-sky-500 transition-colors duration-300">
                     <i class="fab fa-x-twitter text-2xl"></i>
                 </a>
                 <a href="#" aria-label="Instagram" class="text-gray-500 dark:text-gray-400 hover:text-pink-500 transition-colors duration-300">
@@ -205,37 +206,45 @@
             </div>
         </div>
     </footer>
-
+    
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
 
-        // Global variable provided by the Canvas environment.
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyBc3IlMU8TDP0D6mIbJuk3p713H4TDgWGs",
+    authDomain: "fxtprime-9fd26.firebaseapp.com",
+    projectId: "fxtprime-9fd26",
+    storageBucket: "fxtprime-9fd26.firebasestorage.app",
+    messagingSenderId: "208328799466",
+    appId: "1:208328799466:web:9c2a9d3354a32bdb149393",
+    measurementId: "G-0HQ28R0731"
+    };
 
-        // --- Firebase Initialization ---
-        let app, auth;
-        try {
-            app = initializeApp(firebaseConfig);
-            auth = getAuth(app);
-            console.log("Firebase initialized successfully.");
-        } catch (error) {
-            console.error("Error initializing Firebase:", error);
-            showModal('Initialization Error', 'Failed to initialize Firebase. Check console for details.');
-        }
+    // Initialize Firebase services
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
 
-        // --- UI Elements ---
-        const form = document.getElementById('login-form');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const loginBtn = document.getElementById('login-btn');
+
+    // --- UI Elements ---
+    const form = document.getElementById('login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('login-btn');
+    const htmlElement = document.documentElement;
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMessage = document.getElementById('modal-message');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+
+    document.addEventListener('DOMContentLoaded', () => {
         const htmlElement = document.documentElement;
-
-        // Modal UI elements
-        const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalMessage = document.getElementById('modal-message');
-        const closeModalBtn = document.getElementById('close-modal-btn');
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
         const mobileMenuBtn = document.getElementById('mobile-menu-button');
@@ -244,25 +253,13 @@
         const themeIcon = document.getElementById('theme-icon');
         const themeIconMobile = document.getElementById('theme-icon-mobile');
 
-        // --- Modal Functions ---
-        function showModal(title, message) {
-            modalTitle.textContent = title;
-            modalMessage.textContent = message;
-            modal.classList.remove('hidden');
-        }
-
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
-
-        // --- Theme Logic ---
+        // Function to set the theme
         function setTheme(theme) {
-            htmlElement.classList.remove('light', 'dark');
-            htmlElement.classList.add(theme);
-            localStorage.setItem('theme', theme);
+            htmlElement.setAttribute('data-theme', theme);
             updateThemeIcons(theme);
         }
 
+        // Function to update the icons based on the current theme
         function updateThemeIcons(theme) {
             if (theme === 'dark') {
                 themeIcon.classList.remove('fa-moon');
@@ -277,90 +274,100 @@
             }
         }
 
-        // --- Combined DOMContentLoaded and Theme Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set the initial theme based on localStorage or system preference
-            const storedTheme = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
-            setTheme(initialTheme);
-        
-            // Toggle theme on button click
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
-                    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-                });
-            }
-        
-            // Toggle theme on mobile button click
-            if (themeToggleBtnMobile) {
-                themeToggleBtnMobile.addEventListener('click', () => {
-                    const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
-                    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-                });
-            }
-        
-            // Mobile menu functionality
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.add('open');
+        // Check for system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+
+        // Toggle theme on button click (desktop)
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
             });
-        
-            mobileMenuCloseBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
+        }
+
+        // Toggle theme on button click (mobile)
+        if (themeToggleBtnMobile) {
+            themeToggleBtnMobile.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                setTheme(newTheme);
             });
+        }
 
-            // --- Form Submission Logic ---
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = emailInput.value.trim();
-                const password = passwordInput.value;
+        // Mobile menu functionality
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
 
-                loginBtn.textContent = 'Logging in...';
-                loginBtn.disabled = true;
+        mobileMenuCloseBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
 
-                if (!email || !password) {
-                    showModal('Validation Error', 'Please enter both email and password.');
-                    loginBtn.textContent = 'Log In';
-                    loginBtn.disabled = false;
+        // --- Form Submission Logic ---
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            loginBtn.textContent = 'Logging in...';
+            loginBtn.disabled = true;
+
+            if (!email || !password) {
+                showModal('Validation Error', 'Please enter both email and password.');
+                loginBtn.textContent = 'Log In';
+                loginBtn.disabled = false;
+                return;
+            }
+
+            try {
+                if (!auth) {
+                    console.error("Auth is not initialized.");
+                    showModal('Error', 'Authentication service is not ready. Please try again.');
                     return;
                 }
-
-                try {
-                    if (!auth) {
-                        console.error("Auth is not initialized.");
-                        showModal('Error', 'Authentication service is not ready. Please try again.');
-                        return;
-                    }
-                    
-                    await signInWithEmailAndPassword(auth, email, password);
-                    showModal('Login Successful!', 'You have been successfully logged in.');
-                    form.reset();
-                } catch (error) {
-                    console.error("Login failed:", error);
-                    let errorMessage = 'An error occurred during login. Please try again.';
-                    
-                    switch (error.code) {
-                        case 'auth/invalid-credential':
-                            errorMessage = 'Invalid email or password. Please try again.';
-                            break;
-                        case 'auth/user-disabled':
-                            errorMessage = 'This account has been disabled.';
-                            break;
-                        case 'auth/too-many-requests':
-                            errorMessage = 'Access to this account has been temporarily disabled due to many failed login attempts. Please try again later.';
-                            break;
-                        default:
-                            errorMessage = 'An unexpected error occurred. Please try again.';
-                            break;
-                    }
-                    showModal('Login Failed', errorMessage);
-                } finally {
-                    loginBtn.textContent = 'Log In';
-                    loginBtn.disabled = false;
+                
+                await signInWithEmailAndPassword(auth, email, password);
+                // Redirect on successful login
+                window.location.href = './dashboard.html';
+            } catch (error) {
+                console.error("Login failed:", error);
+                let errorMessage = 'An error occurred during login. Please try again.';
+                
+                switch (error.code) {
+                    case 'auth/invalid-credential':
+                        errorMessage = 'Invalid email or password. Please try again.';
+                        break;
+                    case 'auth/user-disabled':
+                        errorMessage = 'This account has been disabled.';
+                        break;
+                    case 'auth/too-many-requests':
+                        errorMessage = 'Access to this account has been temporarily disabled due to many failed login attempts. Please try again later.';
+                        break;
+                    default:
+                        errorMessage = 'An unexpected error occurred. Please try again.';
+                        break;
                 }
-            });
+                showModal('Login Failed', errorMessage);
+            } finally {
+                loginBtn.textContent = 'Log In';
+                loginBtn.disabled = false;
+            }
         });
+    });
+
+    // --- Modal Functions ---
+    function showModal(title, message) {
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modal.classList.remove('hidden');
+    }
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
     </script>
 </body>
 </html>

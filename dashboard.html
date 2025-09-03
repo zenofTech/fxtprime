@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investor Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 32px;
+        }
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+        .dashboard-header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        .user-info {
+            text-align: right;
+        }
+        .user-info span {
+            display: block;
+            font-size: 1rem;
+            color: #555;
+        }
+        .dashboard-cards {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .card {
+            flex: 1 1 200px;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+        }
+        .card p {
+            margin: 0;
+            color: #888;
+        }
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dashboard-table th, .dashboard-table td {
+            padding: 12px 16px;
+            text-align: left;
+        }
+        .dashboard-table th {
+            background: #f0f4f8;
+            color: #333;
+        }
+        .dashboard-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        @media (max-width: 700px) {
+            .dashboard-cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome, Investor</h1>
+            <div class="user-info">
+                <span>Investor ID: 12345</span>
+                <span>Status: Active</span>
+            </div>
+        </div>
+        <div class="dashboard-cards">
+            <div class="card">
+                <h2>$50,000</h2>
+                <p>Total Investment</p>
+            </div>
+            <div class="card">
+                <h2>$5,000</h2>
+                <p>Monthly ROI</p>
+            </div>
+            <div class="card">
+                <h2>8</h2>
+                <p>Active Portfolios</p>
+            </div>
+        </div>
+        <h2>Recent Transactions</h2>
+        <table class="dashboard-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2025-08-30</td>
+                    <td>Investment in "Tech Growth Fund"</td>
+                    <td>$10,000</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>2025-08-15</td>
+                    <td>Withdrawal</td>
+                    <td>$2,000</td>
+                    <td>Processed</td>
+                </tr>
+                <tr>
+                    <td>2025-08-01</td>
+                    <td>Monthly ROI Credit</td>
+                    <td>$5,000</td>
+                    <td>Completed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

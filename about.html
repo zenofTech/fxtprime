@@ -339,64 +339,6 @@
             mobileMenuCloseBtn.addEventListener('click', () => {
                 mobileMenu.classList.remove('open');
             });
-
-            // Form validation logic
-            const form = document.getElementById('signup-form');
-            const firstNameInput = document.getElementById('first-name');
-            const lastNameInput = document.getElementById('last-name');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            const messageContainer = document.getElementById('message-container');
-            const errorMessage = document.getElementById('error-message');
-            const successMessage = document.getElementById('success-message');
-
-            const showMessage = (element, message) => {
-                errorMessage.classList.add('hidden');
-                successMessage.classList.add('hidden');
-                messageContainer.classList.remove('hidden');
-                element.textContent = message;
-                element.classList.remove('hidden');
-            };
-
-            const validateForm = () => {
-                const firstName = firstNameInput.value.trim();
-                const lastName = lastNameInput.value.trim();
-                const email = emailInput.value.trim();
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-
-                if (!firstName || !lastName || !email || !password || !confirmPassword) {
-                    showMessage(errorMessage, 'Please fill out all fields.');
-                    return false;
-                }
-
-                if (password !== confirmPassword) {
-                    showMessage(errorMessage, 'Passwords do not match.');
-                    return false;
-                }
-
-                return true;
-            };
-
-            const clearForm = () => {
-                form.reset();
-            };
-
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-
-                if (validateForm()) {
-                    showMessage(successMessage, 'Sign up successful!');
-                    console.log('User signed up:', {
-                        firstName: firstNameInput.value,
-                        lastName: lastNameInput.value,
-                        email: emailInput.value
-                    });
-
-                    clearForm();
-                }
-            });
         });
     </script>
 
